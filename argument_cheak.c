@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/09 18:14:06 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/11 16:42:35 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,21 @@ char	*get_arg(int argc, char *argv[], char *sp_str)
 	str = NULL;
 	while (i < argc)
 	{
-		str = (char *)malloc(ft_strlen(argv[i]) + 1);
+		len = ft_strlen(argv[i]);
+		str = (char *)malloc(len + 1);
 		if (!str)
 			return (NULL);
-		len = ft_strlen(argv[i]);
-		if (i == 2)
-			ft_strlcpy(str, " ", 2);
-		else
-			ft_strlcat(str, " ", 2);
+	//	if (i == 1)
+	//		ft_strlcpy(str, " ", 2);
+	//	else
+	//		ft_strlcat(str, " ", 2);
+		ft_strlcpy(str, " ", 2);
 		ft_strlcat(str, argv[i], len + 2);
 		ft_strlcat(str, " ", len + 2);
 		tmp += len + 2;
 		ft_strlcat(sp_str, str, (tmp + len));
 		i++;
+		free(str);
 	}
 	return (sp_str);
 }
@@ -78,7 +80,7 @@ char	**div_arg(char *sp_str)
 	char	**aft_str;
 
 	aft_str = NULL;
-	printf("spstr : %s", sp_str);
+	printf("spstr : %s\n", sp_str);
 	if (sp_str)
 		aft_str = ft_split(sp_str, ' ');
 	return (aft_str);
@@ -160,18 +162,18 @@ char	**get_arg_check(int argc, char *argv[])
 
 	if (argc < 2)
 		return (NULL);
-	set_str = set_arg(argc, argv);
-	if (!set_str)
-		return (NULL);
-	sp_str = get_arg(argc, argv, set_str);
+	sp_str = set_arg(argc, argv);
 	if (!sp_str)
 		return (NULL);
-	aft_str = div_arg(sp_str);
+	set_str = get_arg(argc, argv, sp_str);
+	if (!set_str)
+		return (NULL);
+	aft_str = div_arg(set_str);
 	if (!aft_str)
 		return (NULL);
 	if ((ck_over(aft_str) || ck_dig(aft_str) || ck_dup(aft_str)) == 1)
 		return (NULL);
-	free(sp_str);
+	//free(sp_str);
 	free(set_str);
 	return (aft_str);
 }
@@ -182,7 +184,10 @@ int	main(int argc, char *argv[])
 	int i = 0;
 	str = get_arg_check(argc, argv);
 	if (!str)
+	{
+		free (str);
 		return 0;
+	}
 	while (str[i] != NULL)
 	{
 		printf("true : %s\n", str[i]);
