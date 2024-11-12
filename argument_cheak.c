@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/11 16:42:35 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:01:28 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ char	*get_arg(int argc, char *argv[], char *sp_str)
 		str = (char *)malloc(len + 1);
 		if (!str)
 			return (NULL);
-	//	if (i == 1)
-	//		ft_strlcpy(str, " ", 2);
-	//	else
-	//		ft_strlcat(str, " ", 2);
 		ft_strlcpy(str, " ", 2);
 		ft_strlcat(str, argv[i], len + 2);
 		ft_strlcat(str, " ", len + 2);
@@ -75,14 +71,14 @@ char	*get_arg(int argc, char *argv[], char *sp_str)
 	return (sp_str);
 }
 
-char	**div_arg(char *sp_str)
+char	**div_arg(char *set_str)
 {
 	char	**aft_str;
 
 	aft_str = NULL;
-	printf("spstr : %s\n", sp_str);
-	if (sp_str)
-		aft_str = ft_split(sp_str, ' ');
+	if (set_str)
+		aft_str = ft_split(set_str, ' ');
+	free(set_str);
 	return (aft_str);
 }
 
@@ -154,6 +150,22 @@ int	ck_dup(char **aft_str)
 	return (0);
 }
 
+void	str_mem_free(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			free(str[i]);
+			i++;
+		}
+		free (str);
+	}
+}
+
 char	**get_arg_check(int argc, char *argv[])
 {
 	void	*sp_str;
@@ -167,42 +179,44 @@ char	**get_arg_check(int argc, char *argv[])
 		return (NULL);
 	set_str = get_arg(argc, argv, sp_str);
 	if (!set_str)
+	{
+		free (sp_str);
 		return (NULL);
+	}
 	aft_str = div_arg(set_str);
 	if (!aft_str)
+	{
+		free (set_str);
 		return (NULL);
+	}
 	if ((ck_over(aft_str) || ck_dig(aft_str) || ck_dup(aft_str)) == 1)
 		return (NULL);
-	//free(sp_str);
-	free(set_str);
 	return (aft_str);
+}
+
+char	**check_all_arg(int argc, char *argv[])
+{
+	int	i;
+	char	**str;
+
+	i = 0;
+	str = get_arg_check(argc, argv);
+	if (!str)
+	{
+		str_mem_free(str);
+		return 0;
+	}
+	return (str);
+
+	
 }
 
 int	main(int argc, char *argv[])
 {
 	char **str;
-	int i = 0;
-	str = get_arg_check(argc, argv);
-	if (!str)
-	{
-		free (str);
-		return 0;
-	}
-	while (str[i] != NULL)
-	{
-		printf("true : %s\n", str[i]);
-		i++;
-	}
-	i = 0;
-	if (str[i] != NULL)
-	{
-		while (str[i])
-		{
-			free(str[i]);
-			i++;
-		}
-	}
-	free(str);
-	printf("true");
+	
+	str = NULL;
+	str = check_all_arg(argc, argv);
+	str_mem_free(str);
 	return (0);
 }
