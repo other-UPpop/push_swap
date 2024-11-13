@@ -6,24 +6,24 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/13 13:45:13 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/13 17:09:14 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <limits.h>
 #include <ctype.h>
-#include <string.h>
+#include <limits.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 //#include "push_swap.h"
 #include "libft/libft.h"
 
 typedef struct c_list
 {
-	int	size;
-	size_t	sort;
+	int				num;
+	size_t			sort;
 	struct c_list	*next;
-} s_list;
+}					s_list;
 
 char	*set_arg(int argc, char *argv[])
 {
@@ -118,14 +118,13 @@ int	ck_dig(char **aft_str)
 
 	i = 0;
 	j = 0;
-
 	while (aft_str[i])
 	{
 		j = 0;
 		if (aft_str[i][0] == '-')
 			j++;
 		while (aft_str[i][j])
-		{	
+		{
 			if (!ft_isdigit(aft_str[i][j]))
 			{
 				printf("dig_Error");
@@ -174,7 +173,7 @@ void	str_mem_free(char **str)
 			free(str[i]);
 			i++;
 		}
-		free (str);
+		free(str);
 	}
 }
 
@@ -192,13 +191,13 @@ char	**get_arg_check(int argc, char *argv[])
 	set_str = get_arg(argc, argv, sp_str);
 	if (!set_str)
 	{
-		free (sp_str);
+		free(sp_str);
 		return (NULL);
 	}
 	aft_str = div_arg(set_str);
 	if (!aft_str)
 	{
-		free (set_str);
+		free(set_str);
 		return (NULL);
 	}
 	if ((ck_over(aft_str) || ck_dig(aft_str) || ck_dup(aft_str)) == 1)
@@ -208,19 +207,19 @@ char	**get_arg_check(int argc, char *argv[])
 
 char	**check_all_arg(int argc, char *argv[])
 {
-	int	i;
+	int		i;
 	char	**str;
 
 	i = 0;
 	str = get_arg_check(argc, argv);
 	if (!str)
-		return 0;
+		return (0);
 	return (str);
 }
 
 s_list	*ft_cycle_lstlast(s_list *lst)
 {
-	s_list *last;
+	s_list	*last;
 
 	last = lst;
 	if (!lst)
@@ -233,11 +232,11 @@ s_list	*ft_cycle_lstlast(s_list *lst)
 void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
 {
 	s_list	*last;
-	//s_list	*first;
 
+	// s_list	*first;
 	if (!lst || !new_node)
 		return ;
-	//first = lst;
+	// first = lst;
 	if (!*lst)
 		*lst = new_node;
 	else
@@ -248,14 +247,14 @@ void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
 	}
 }
 
-s_list	*ft_cycle_lstnew(int c_size, size_t c_sort)
+s_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
 {
 	s_list	*node;
 
 	node = (s_list *)malloc(sizeof(s_list));
 	if (!node)
 		return (NULL);
-	node->size = c_size;
+	node->num = c_num;
 	node->sort = c_sort;
 	node->next = node;
 	return (node);
@@ -265,7 +264,6 @@ void	free_cycle_list(s_list *lst)
 {
 	s_list	*start;
 	s_list	*temp;
-
 
 	if (!lst)
 		return ;
@@ -280,6 +278,7 @@ void	free_cycle_list(s_list *lst)
 		free(temp);
 	}
 }
+
 void	print_cycle_list(s_list *lst)
 {
 	s_list	*first;
@@ -288,62 +287,72 @@ void	print_cycle_list(s_list *lst)
 	if (!lst)
 		return ;
 	first = lst;
-	printf("number:%d\n", lst->size);
+	printf("number:%d\n", lst->num);
 	printf("sort:%ld\n", lst->sort);
 	lst = lst->next;
 	while (lst != first)
 	{
 		tmp = lst;
-		printf("number:%d\n", tmp->size);
+		printf("number:%d\n", tmp->num);
 		printf("sort:%ld\n", tmp->sort);
 		lst = lst->next;
 	}
 }
 
-void	pre_comp(char **str)
+size_t	ft_compare(char **str, size_t i)
 {
-	size_t	i;
 	size_t	j;
 	size_t	x;
-	s_list	*a_list = NULL;	
 
-	i = 0;
 	j = 0;
 	x = 0;
+	while (str[j])
+	{
+		if (ft_atoi(str[i]) > ft_atoi(str[j]))
+			x++;
+		j++
+	}
+	return (x);
+}
+
+s_list	*put_first_stack(char **str)
+{
+	size_t	i;
+	size_t	x;
+	s_list	*a_list;
+	s_list	*new_node;
+
+	i = 0;
+	x = 0;
 	if (!str)
-		return ;
+		return (NULL);
+	new_node = NULL;
+	a_list = NULL;
 	while (str[i])
 	{
 		x = 0;
-		j = 0;
-		while (str[j])
-		{
-			if (atoi(str[i]) > atoi(str[j]))
-				x++;
-			j++;
-		}
-		printf("x:%ld   [%d]\n", x, atoi(str[i]));
-		s_list *new_node = ft_cycle_lstnew(atoi(str[i]), x);
-		printf("node:%d\n", new_node->size);
+		x = ft_compare(str, i) new_node = ft_cycle_lstnew(atoi(str[i]), x);
 		if (!new_node)
 		{
 			free_cycle_list(a_list);
-			return ;
+			return (NULL);
 		}
 		ft_cycle_lstadd_back(&a_list, new_node);
 		i++;
 	}
 	print_cycle_list(a_list);
-	free_cycle_list(a_list);
+	return (a_list);
 }
 
 int	main(int argc, char *argv[])
 {
-	char **str;
-	
+	char	**str;
+	s_list	*stack_a;
+
 	str = NULL;
 	str = check_all_arg(argc, argv);
-	pre_comp(str);
+	stack_a = put_first_stack(str);
 	str_mem_free(str);
+	free_cycle_list(stack_a);
 	return (0);
 }

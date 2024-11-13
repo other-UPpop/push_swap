@@ -18,8 +18,8 @@ void	pre_comp(char **str)
 	size_t	i;
 	size_t	j;
 	size_t	x;
-//	s_list	**a_list;	
 
+	//	s_list	**a_list;
 	i = 0;
 	j = 0;
 	x = 0;
@@ -32,12 +32,12 @@ void	pre_comp(char **str)
 		while (str[j])
 		{
 			if (str[i] > str[j])
-			x++;
+				x++;
 			i++;
 		}
 		printf("x:%ld [%d]\n", x, atoi(str[i]));
-		//a_list = ft_cycle_lstnew(atoi(str[i]), x);
-		//ft_cycle_lstadd_back(a_list);
+		// a_list = ft_cycle_lstnew(atoi(str[i]), x);
+		// ft_cycle_lstadd_back(a_list);
 		i++;
 	}
 }

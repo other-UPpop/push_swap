@@ -16,7 +16,7 @@ s_list	*ft_cycle_lstnew(int c_size, size_t c_sort)
 {
 	s_list	*node;
 
-	node =  (s_list *)malloc(sizeof(*node));
+	node = (s_list *)malloc(sizeof(*node));
 	if (!node)
 		return (NULL);
 	node->size = c_size;
@@ -66,5 +66,5 @@ void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
 	}
 	last = ft_lstlast(*lst);
 	last->next = new_node;
-	new_node -> next = *lst;
+	new_node->next = *lst;
 }

@@ -22,6 +22,6 @@ void	str_mem_free(char **str)
 			free(str[i]);
 			i++;
 		}
-		free (str);
+		free(str);
 	}
 }
