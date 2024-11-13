@@ -6,15 +6,24 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/12 15:01:28 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/12 18:31:01 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <limits.h>
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+//#include "push_swap.h"
 #include "libft/libft.h"
+
+typedef struct
+{
+	int	size;
+	size_t	sort;
+	c_list	*next;
+} s_list;
 
 char	*set_arg(int argc, char *argv[])
 {
@@ -93,7 +102,7 @@ int	ck_over(char **aft_str)
 		num = ft_long_atoi(aft_str[i]);
 		if (num >= INT_MAX || num <= INT_MIN)
 		{
-			printf("Error");
+			printf("sign_Error");
 			return (1);
 		}
 		i++;
@@ -109,14 +118,17 @@ int	ck_dig(char **aft_str)
 
 	i = 0;
 	j = 0;
+
 	while (aft_str[i])
 	{
 		j = 0;
+		if (aft_str[i][0] == '-')
+			j++;
 		while (aft_str[i][j])
-		{
+		{	
 			if (!ft_isdigit(aft_str[i][j]))
 			{
-				printf("Error");
+				printf("dig_Error");
 				return (1);
 			}
 			j++;
@@ -211,12 +223,73 @@ char	**check_all_arg(int argc, char *argv[])
 	
 }
 
+void	ft_cycle_lstadd_back(s_list **lst, t_list *new_node)
+{
+	s_list	*last;
+	s_list	*first;
+
+	if (!lst || !new_node)
+		return ;
+	first = lst;
+	if (!*lst)
+		*lst = new_node;
+	else
+	{
+		last = ft_lstlast(*lst);
+		last->next = new_node;
+		new_node -> next = *lst;
+	}
+}
+
+s_list	*ft_cycle_lstnew(int c_size, size_t c_sort)
+{
+	struct s_list	*node;
+
+	node = (s_list *)malloc(sizeof(s_list));
+	if (!node)
+		return (NULL);
+	node->size = c_size;
+	node->sort = c_sort;
+	node->next = node;
+	return (node);
+}
+
+void	pre_comp(char **str)
+{
+	size_t	i;
+	size_t	j;
+	size_t	x;
+	struct s_list	*a_list = NULL;	
+
+	i = 0;
+	j = 0;
+	x = 0;
+	if (!str)
+		return ;
+	while (str[i])
+	{
+		x = 0;
+		j = 0;
+		while (str[j])
+		{
+			if (atoi(str[i]) > atoi(str[j]))
+				x++;
+			j++;
+		}
+		printf("x:%ld   [%d]\n", x, atoi(str[i]));
+		struct s_list *new_node = ft_cycle_lstnew(atoi(str[i]), x);
+		ft_cycle_lstadd_back(&a_list, new_node);
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	char **str;
 	
 	str = NULL;
 	str = check_all_arg(argc, argv);
+	pre_comp(str);
 	str_mem_free(str);
 	return (0);
 }

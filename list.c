@@ -6,19 +6,21 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:52:01 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/12 16:33:36 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/12 17:19:28 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-s_list	*ft_cycle_lestnew(void *content)
+#include "push_swap.h"
+
+s_list	*ft_cycle_lstnew(int c_size, size_t c_sort)
 {
 	s_list	*node;
 
 	node =  (s_list *)malloc(sizeof(*node));
 	if (!node)
 		return (NULL);
-	node->size = 0;
-	node->sort = 0;
+	node->size = c_size;
+	node->sort = c_sort;
 	node->next = node;
 	return (node);
 }
@@ -43,10 +45,10 @@ void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node)
 		*lst = new_node;
 		return ;
 	}
-	new_node -> next = *lst;
-	*lst = new_node;
 	last = ft_lstlast(*lst);
-	last->next = *lst;
+	new_node->next = *lst;
+	last->next = new_node;
+	*lst = new_node;
 }
 
 void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
@@ -63,7 +65,6 @@ void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
 		return ;
 	}
 	last = ft_lstlast(*lst);
-	last->next = first;
+	last->next = new_node;
+	new_node -> next = *lst;
 }
-
-
