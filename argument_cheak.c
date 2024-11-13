@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/12 18:31:01 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/13 12:34:01 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 //#include "push_swap.h"
 #include "libft/libft.h"
 
-typedef struct
+typedef struct c_list
 {
 	int	size;
 	size_t	sort;
-	c_list	*next;
+	struct c_list	*next;
 } s_list;
 
 char	*set_arg(int argc, char *argv[])
@@ -214,10 +214,7 @@ char	**check_all_arg(int argc, char *argv[])
 	i = 0;
 	str = get_arg_check(argc, argv);
 	if (!str)
-	{
-		str_mem_free(str);
 		return 0;
-	}
 	return (str);
 
 	
