@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/13 13:45:13 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/13 13:19:07 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,18 +216,17 @@ char	**check_all_arg(int argc, char *argv[])
 	if (!str)
 		return 0;
 	return (str);
+
+	
 }
 
 s_list	*ft_cycle_lstlast(s_list *lst)
 {
-	s_list *last;
-
-	last = lst;
 	if (!lst)
 		return (NULL);
-	while (last->next != lst)
-		last = last->next;
-	return (last);
+	while (lst -> next)
+
+	return (lst);
 }
 
 void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
@@ -237,14 +236,14 @@ void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
 
 	if (!lst || !new_node)
 		return ;
-	//first = lst;
+	//first = *lst;
 	if (!*lst)
 		*lst = new_node;
 	else
 	{
 		last = ft_cycle_lstlast(*lst);
 		last->next = new_node;
-		new_node->next = *lst;
+		new_node -> next = *lst;
 	}
 }
 
@@ -282,24 +281,22 @@ void	free_cycle_list(s_list *lst)
 }
 void	print_cycle_list(s_list *lst)
 {
-	s_list	*first;
-	s_list	*tmp;
+	s_list	first;
+	s_list	temp;
 
 	if (!lst)
 		return ;
 	first = lst;
-	printf("number:%d\n", lst->size);
-	printf("sort:%ld\n", lst->sort);
+	temp = lst;
 	lst = lst->next;
+	free(temp);
 	while (lst != first)
 	{
-		tmp = lst;
-		printf("number:%d\n", tmp->size);
-		printf("sort:%ld\n", tmp->sort);
+		printf("number:%d", lst->size);
+		printf("sort:%ld", lst->sort);
 		lst = lst->next;
 	}
 }
-
 void	pre_comp(char **str)
 {
 	size_t	i;
@@ -324,7 +321,6 @@ void	pre_comp(char **str)
 		}
 		printf("x:%ld   [%d]\n", x, atoi(str[i]));
 		s_list *new_node = ft_cycle_lstnew(atoi(str[i]), x);
-		printf("node:%d\n", new_node->size);
 		if (!new_node)
 		{
 			free_cycle_list(a_list);
