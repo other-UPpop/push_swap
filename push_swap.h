@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:27:54 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 17:58:58 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/15 20:08:53 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,9 @@ void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node);
 s_list	*ft_cycle_lstnew(int c_num, size_t c_sort);
 void	free_cycle_list(s_list *lst);
 void	free_str_mem(char **str);
+void	ft_cycle_lstdelone(s_list *lst);
+void	del_node(int *num, size_t *sort);
+void	push_a(s_list **stack_a, s_list **stack_b);
+void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node);
 
 #endif

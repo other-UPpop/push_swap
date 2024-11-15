@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:52:01 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 17:34:29 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/15 19:59:27 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,39 +53,38 @@ s_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
 	return (node);
 }
 
-//void	free_cycle_list(s_list *lst)
+//void	del_node(int *num, size_t *sort)
 //{
-//	s_list	*start;
-//	s_list	*temp;
-//
-//	if (!lst)
-//		return ;
-//	start = lst;
-//	temp = lst;
-//	lst = lst->next;
-//	free(temp);
-//	while (lst != start)
-//	{
-//		temp = lst;
-//		lst = lst->next;
-//		free(temp);
-//	}
+//	free(num);
+//	free(sort);
 //}
+//
+//void	ft_cycle_lstdelone(s_list *lst, void (*del)(int *, size_t *))
+//{
+//	if (!lst || !del)
+//		return ;
+//	del(lst->num ,lst->sort);
+//	free(lst);
+//}
+//
 
-//void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node)
-//{
-//	s_list	*last;
-//
-//	if (!lst || !new_node)
-//		return ;
-//	if (!*lst)
-//	{
-//		*lst = new_node;
-//		return ;
-//	}
-//	last = ft_lstlast(*lst);
-//	new_node->next = *lst;
-//	last->next = new_node;
-//	*lst = new_node;
-//}
+void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node)
+{
+	s_list	*last;
+
+	if (!lst || !new_node)
+		return ;
+	if (!*lst)
+	{
+		*lst = new_node;
+		new_node->next = new_node;
+	}
+	else
+	{
+		last = ft_cycle_lstlast(*lst);
+		new_node->next = *lst;
+		last->next = new_node;
+		*lst = new_node;
+	}
+}
 

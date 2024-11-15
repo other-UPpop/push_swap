@@ -6,11 +6,26 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:43:33 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 18:02:51 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/15 20:23:01 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+//void	del_node(int *num, size_t *sort)
+//{
+//	if (num)
+//		free(num);
+//	if (sort)
+//		free(sort);
+//}
+
+void	ft_cycle_lstdelone(s_list *lst)
+{
+	if (!lst)
+		return ;
+	free(lst);
+}
 
 void	free_str_mem(char **str)
 {
