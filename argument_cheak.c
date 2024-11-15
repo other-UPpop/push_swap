@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/13 17:09:14 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/13 17:16:20 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	ck_over(char **aft_str)
 	while (aft_str[i] != NULL)
 	{
 		num = ft_long_atoi(aft_str[i]);
-		if (num >= INT_MAX || num <= INT_MIN)
+		if (num > INT_MAX || num < INT_MIN)
 		{
 			printf("sign_Error");
 			return (1);
@@ -310,7 +310,7 @@ size_t	ft_compare(char **str, size_t i)
 	{
 		if (ft_atoi(str[i]) > ft_atoi(str[j]))
 			x++;
-		j++
+		j++;
 	}
 	return (x);
 }
@@ -331,7 +331,8 @@ s_list	*put_first_stack(char **str)
 	while (str[i])
 	{
 		x = 0;
-		x = ft_compare(str, i) new_node = ft_cycle_lstnew(atoi(str[i]), x);
+		x = ft_compare(str, i);
+		new_node = ft_cycle_lstnew(atoi(str[i]), x);
 		if (!new_node)
 		{
 			free_cycle_list(a_list);
@@ -340,7 +341,6 @@ s_list	*put_first_stack(char **str)
 		ft_cycle_lstadd_back(&a_list, new_node);
 		i++;
 	}
-	print_cycle_list(a_list);
 	return (a_list);
 }
 
@@ -352,6 +352,7 @@ int	main(int argc, char *argv[])
 	str = NULL;
 	str = check_all_arg(argc, argv);
 	stack_a = put_first_stack(str);
+	print_cycle_list(stack_a);
 	str_mem_free(str);
 	free_cycle_list(stack_a);
 	return (0);
