@@ -1,48 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_free.c                                         :+:      :+:    :+:   */
+/*   sort_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 14:43:33 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 18:02:51 by rohta            ###   ########.fr       */
+/*   Created: 2024/11/15 16:30:30 by rohta             #+#    #+#             */
+/*   Updated: 2024/11/15 16:35:57 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft/libft.h"
 
-void	free_str_mem(char **str)
+void	push_a(s_list stack_a, s_list stack_b)
 {
-	size_t	i;
 
-	i = 0;
-	if (str)
-	{
-		while (str[i])
-		{
-			free(str[i]);
-			i++;
-		}
-		free(str);
-	}
-}
-
-void	free_cycle_list(s_list *lst)
-{
-	s_list	*start;
-	s_list	*temp;
-
-	if (!lst)
-		return ;
-	start = lst;
-	temp = lst;
-	lst = lst->next;
-	free(temp);
-	while (lst != start)
-	{
-		temp = lst;
-		lst = lst->next;
-		free(temp);
-	}
 }
