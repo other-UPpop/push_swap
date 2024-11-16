@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 18:50:33 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 19:49:32 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,8 +197,10 @@ int	main(int argc, char *argv[])
 //	push_b(&stack_a, &stack_b);
 //	push_b(&stack_a, &stack_b);
 //	swap_a(&stack_a);
-	rotate_a(&stack_a);
-	print_cycle_lista(stack_a);
+//	rotate_a(&stack_a);
+	reverse_rotate_a(&stack_a);
+//	delete_end_node(&stack_a);
+	print_cycle_listb(stack_a);
 	printf("mid_command\n");
 	free_str_mem(str);
 	free_cycle_list(stack_a);

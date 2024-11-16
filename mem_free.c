@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:43:33 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 16:27:10 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 19:35:09 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void	ft_cycle_lstdelone(s_list *lst, void (*del)(int *, size_t *))
 	free(lst);
 }
 
+void	solo_node_del(s_list *stack, s_list *node)
+{
+	ft_cycle_lstdelone(node, del_node);
+	stack = NULL;
+	return ;
+}
+
 void	delete_top_node(s_list **stack)
 {
 	s_list	*node;
@@ -45,16 +52,32 @@ void	delete_top_node(s_list **stack)
 		return ;
 	node = *stack;
 	if (node->next == *stack)
-	{
-		ft_cycle_lstdelone(node, del_node);
-		*stack = NULL;
-		return ;
-	}
+		return (solo_node_del(*stack, node));
 	last_node = *stack;
 	last_node = ft_cycle_lstlast(*stack);
 	*stack = node->next;
 	last_node->next = *stack;
 	ft_cycle_lstdelone(node, del_node);
+}
+
+void	delete_end_node(s_list **stack)
+{
+	s_list	*node;
+	s_list	*next_last_node;
+	s_list	*last_node;
+
+	if (!stack || !*stack)
+		return ;
+	node = *stack;
+	if ((*stack)->next == *stack)
+		return (solo_node_del(*stack, node));
+	last_node = *stack;
+	next_last_node = *stack;
+	last_node = ft_cycle_lstlast(*stack);
+	while (next_last_node->next != last_node)
+		next_last_node = next_last_node->next;
+	next_last_node->next = *stack;
+	ft_cycle_lstdelone(last_node, del_node);
 }
 
 void	free_str_mem(char **str)

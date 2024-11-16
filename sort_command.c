@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:30:30 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 18:56:48 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 19:52:11 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ void	swap_a(s_list **stack_a)
 	s_list	*node_1;
 	s_list	*node_2;
 
-	if (!stack_a || !*stack_a)
+	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
 		return ;
 	i = 1;
+	printf("pb\n");
 	while (i <= 2)
 	{
 		tmp_num = *(*stack_a)->num;
@@ -92,7 +93,7 @@ void	swap_b(s_list **stack_b)
 	s_list	*node_1;
 	s_list	*node_2;
 
-	if (!stack_b || !*stack_b)
+	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
 		return ;
 	i = 1;
 	while (i <= 2)
@@ -112,6 +113,10 @@ void	swap_b(s_list **stack_b)
 
 void	swap_swap(s_list **stack_a, s_list **stack_b)
 {
+	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
+		return ;
+	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
+		return ;
 	swap_a(stack_a);
 	swap_b(stack_b);
 }
@@ -122,7 +127,7 @@ void	rotate_a(s_list **stack_a)
 	size_t	tmp_sort;
 	s_list	*node;
 
-	if (!stack_a || !*stack_a)
+	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
 		return ;
 	tmp_num = *(*stack_a)->num;
 	tmp_sort = *(*stack_a)->sort;
@@ -131,16 +136,16 @@ void	rotate_a(s_list **stack_a)
 	ft_cycle_lstadd_back(stack_a, node);
 }
 
-void	ratate_b(s_list **stack_b)
+void	rotate_b(s_list **stack_b)
 {
 	int	tmp_num;
 	size_t	tmp_sort;
 	s_list	*node;
 
-	if (!stack_b || !*stack_b)
+	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
 		return ;
 	tmp_num = *(*stack_b)->num;
-	tmp-sort = *(*stack_b)->sort;
+	tmp_sort = *(*stack_b)->sort;
 	delete_top_node(stack_b);
 	node = ft_cycle_lstnew(tmp_num, tmp_sort);
 	ft_cycle_lstadd_back(stack_b, node);
@@ -148,8 +153,56 @@ void	ratate_b(s_list **stack_b)
 
 void	rotate_rotate(s_list **stack_a, s_list **stack_b)
 {
-	ratate_a(stack_a);
+	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
+		return ;
+	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
+		return ;
+	rotate_a(stack_a);
 	rotate_b(stack_b);
 }
 
+void	reverse_rotate_a(s_list **stack_a)
+{
+	int	tmp_num;
+	size_t	tmp_sort;
+	s_list	*last_node;
+	s_list	*node;
 
+	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
+		return ;
+	last_node = *stack_a;
+	last_node = ft_cycle_lstlast(*stack_a);
+	tmp_num = *last_node->num;
+	tmp_sort = *last_node->sort;
+	delete_end_node(stack_a);
+	node = ft_cycle_lstnew(tmp_num, tmp_sort);
+	ft_cycle_lstadd_front(stack_a, node);
+}
+
+void	reverse_rotate_b(s_list **stack_b)
+{
+	int	tmp_num;
+	size_t	tmp_sort;
+	s_list	*last_node;
+	s_list	*node;
+
+	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
+		return ;
+	last_node = *stack_b;
+	last_node = ft_cycle_lstlast(*stack_b);
+	tmp_num = *last_node->num;
+	tmp_sort = *last_node->sort;
+	delete_end_node(stack_b);
+	node = ft_cycle_lstnew(tmp_num, tmp_sort);
+	ft_cycle_lstadd_front(stack_b, node);
+}
+
+void	reverse_rotate_rotate(s_list **stack_a, s_list **stack_b)
+{
+	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
+		return ;
+	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
+		return ;
+	reverse_rotate_a(stack_a);
+	reverse_rotate_b(stack_b);
+}
