@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 19:49:32 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 20:37:07 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ void	print_cycle_listb(s_list *lst)
 	if (!lst)
 		return ;
 	first = lst;
-	printf("numberB:%d\n", *lst->num);
-	printf("sortB:%ld\n", *lst->sort);
+	printf("num:%d\n", *lst->num);
+//	printf("sortB:%ld\n", *lst->sort);
 	lst = lst->next;
 	while (lst != first)
 	{
 		tmp = lst;
-		printf("numberB:%d\n", *tmp->num);
-		printf("sortB:%ld\n", *tmp->sort);
+		printf("num:%d\n", *tmp->num);
+//		printf("sortB:%ld\n", *tmp->sort);
 		lst = lst->next;
 	}
 }
@@ -181,6 +181,7 @@ int	main(int argc, char *argv[])
 	s_list	*stack_b;
 
 	str = NULL;
+	printf("%d", argc - 1);
 	stack_b = NULL;
 	str = check_all_arg(argc, argv);
 	stack_a = put_first_stack(str);
@@ -198,8 +199,10 @@ int	main(int argc, char *argv[])
 //	push_b(&stack_a, &stack_b);
 //	swap_a(&stack_a);
 //	rotate_a(&stack_a);
-	reverse_rotate_a(&stack_a);
+//	reverse_rotate_a(&stack_a);
 //	delete_end_node(&stack_a);
+	if ((argc - 1) == 3)
+		sort_3(&stack_a, &stack_b);
 	print_cycle_listb(stack_a);
 	printf("mid_command\n");
 	free_str_mem(str);

@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:27:54 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 19:45:21 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 20:33:57 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	reverse_rotate_a(s_list **stack_a);
 void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node);
 void	delete_top_node(s_list **stack);
 void	delete_end_node(s_list **stack);
+void	sort_3(s_list **stack_a, s_list **stack_b);
 
 #endif

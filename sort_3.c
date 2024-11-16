@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pre_sort.c                                         :+:      :+:    :+:   */
+/*   sort_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 16:52:41 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/12 17:37:54 by rohta            ###   ########.fr       */
+/*   Created: 2024/11/16 20:11:38 by rohta             #+#    #+#             */
+/*   Updated: 2024/11/16 20:57:48 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <stdio.h>
+#include "push_swap.h"
 
-void	pre_comp(char **str)
+void	sort_3(s_list **stack_a, s_list **stack_b)
 {
-	size_t	i;
-	size_t	j;
-	size_t	x;
+	s_list	*node = *stack_a;
+	size_t	i = 0;
 
-	//	s_list	**a_list;
-	i = 0;
-	j = 0;
-	x = 0;
-	if (!str)
-		return ;
-	while (str[i])
+	while (i == *node->sort)
 	{
-		x = 0;
-		j = 0;
-		while (str[j])
-		{
-			if (str[i] > str[j])
-				x++;
-			i++;
-		}
-		printf("x:%ld [%d]\n", x, atoi(str[i]));
-		// a_list = ft_cycle_lstnew(atoi(str[i]), x);
-		// ft_cycle_lstadd_back(a_list);
+		if (i > 2)
+			return ;
+		node = node->next;
 		i++;
+	}	
+	if (0 == *(*stack_a)->next->sort)
+	{
+		push_a(stack_a, stack_b);
+		swap_a(stack_a);
+		push_b(stack_a, stack_b);
+		return ;
 	}
 }
+	//else if (1 == (*stack)->sort)
+	
+	//else if (2 == (*stack)->sort)
