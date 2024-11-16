@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:52:01 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 19:59:27 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 15:43:38 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ s_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
 	node = (s_list *)malloc(sizeof(s_list));
 	if (!node)
 		return (NULL);
-	node->num = c_num;
-	node->sort = c_sort;
+	node->num = (int *)malloc(sizeof(int));
+	node->sort = (size_t *)malloc(sizeof(size_t));
+	if (!node->num || !node->sort)
+		return (NULL);
+	*node->num = c_num;
+	*node->sort = c_sort;
 	node->next = node;
 	return (node);
 }

@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 20:21:17 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 18:50:33 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ void	print_cycle_listb(s_list *lst)
 	if (!lst)
 		return ;
 	first = lst;
-	printf("numberB:%d\n", lst->num);
-	printf("sortB:%ld\n", lst->sort);
+	printf("numberB:%d\n", *lst->num);
+	printf("sortB:%ld\n", *lst->sort);
 	lst = lst->next;
 	while (lst != first)
 	{
 		tmp = lst;
-		printf("numberB:%d\n", tmp->num);
-		printf("sortB:%ld\n", tmp->sort);
+		printf("numberB:%d\n", *tmp->num);
+		printf("sortB:%ld\n", *tmp->sort);
 		lst = lst->next;
 	}
 }
@@ -117,14 +117,14 @@ void	print_cycle_lista(s_list *lst)
 	if (!lst)
 		return ;
 	first = lst;
-	printf("numberA:%d\n", lst->num);
-	printf("sortA:%ld\n", lst->sort);
+	printf("numberA:%d\n", *lst->num);
+	printf("sortA:%ld\n", *lst->sort);
 	lst = lst->next;
 	while (lst != first)
 	{
 		tmp = lst;
-		printf("numberA:%d\n", tmp->num);
-		printf("sortA:%ld\n", tmp->sort);
+		printf("numberA:%d\n", *tmp->num);
+		printf("sortA:%ld\n", *tmp->sort);
 		lst = lst->next;
 	}
 }
@@ -186,12 +186,22 @@ int	main(int argc, char *argv[])
 	stack_a = put_first_stack(str);
 	//stack_b = ft_cycle_lstnew(NULL, NULL);
 	print_cycle_lista(stack_a);
-	//sort_command(stack_a, stack_b);
-	push_a(&stack_a, &stack_b);
-	push_a(&stack_a, &stack_b);
+//	delete_top_node(&stack_a);
+	//ft_cycle_lstdelone(stack_a, del_node);
+//	free_cycle_list(stack_a);
+//	push_a(&stack_a, &stack_b);
+//	push_a(&stack_a, &stack_b);
+//	push_a(&stack_a, &stack_b);
+//	print_cycle_listb(stack_b);
+//	push_b(&stack_a, &stack_b);
+//	push_b(&stack_a, &stack_b);
+//	push_b(&stack_a, &stack_b);
+//	swap_a(&stack_a);
+	rotate_a(&stack_a);
+	print_cycle_lista(stack_a);
 	printf("mid_command\n");
-	print_cycle_listb(stack_b);
 	free_str_mem(str);
 	free_cycle_list(stack_a);
+	free_cycle_list(stack_b);
 	return (0);
 }

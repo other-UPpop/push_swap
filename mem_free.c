@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:43:33 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 20:23:01 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/16 16:27:10 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,41 @@
 //		free(sort);
 //}
 
-void	ft_cycle_lstdelone(s_list *lst)
+void	del_node(int *num, size_t *sort)
+{
+	if (num)
+		free(num);
+	if (sort)
+		free(sort);
+}
+
+void	ft_cycle_lstdelone(s_list *lst, void (*del)(int *, size_t *))
 {
 	if (!lst)
 		return ;
+	del(lst->num, lst->sort);
 	free(lst);
+}
+
+void	delete_top_node(s_list **stack)
+{
+	s_list	*node;
+	s_list	*last_node;
+
+	if (!stack || !*stack)
+		return ;
+	node = *stack;
+	if (node->next == *stack)
+	{
+		ft_cycle_lstdelone(node, del_node);
+		*stack = NULL;
+		return ;
+	}
+	last_node = *stack;
+	last_node = ft_cycle_lstlast(*stack);
+	*stack = node->next;
+	last_node->next = *stack;
+	ft_cycle_lstdelone(node, del_node);
 }
 
 void	free_str_mem(char **str)
