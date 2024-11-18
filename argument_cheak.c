@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 20:37:07 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/18 19:03:38 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ size_t	ft_compare(char **str, size_t i)
 	size_t	x;
 
 	j = 0;
-	x = 0;
+	x = 1;
 	while (str[j])
 	{
 		if (ft_atoi(str[i]) > ft_atoi(str[j]))
@@ -201,12 +201,21 @@ int	main(int argc, char *argv[])
 //	rotate_a(&stack_a);
 //	reverse_rotate_a(&stack_a);
 //	delete_end_node(&stack_a);
+	if ((argc - 1) == 2)
+		sort_2(&stack_a);
 	if ((argc - 1) == 3)
-		sort_3(&stack_a, &stack_b);
+		sort_3(&stack_a);
+	if ((argc - 1) == 4)
+		sort_4(&stack_a, &stack_b);
+//	reverse_rotate_a(&stack_a);
+//	swap_a(&stack_a);
+//	size_t i = 0;
+//	i = ft_cycle_lstsize(stack_a);
+//	printf("%ld\n", i);
 	print_cycle_listb(stack_a);
 	printf("mid_command\n");
 	free_str_mem(str);
 	free_cycle_list(stack_a);
-	free_cycle_list(stack_b);
+//	free_cycle_list(stack_b);
 	return (0);
 }

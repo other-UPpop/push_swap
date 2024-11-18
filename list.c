@@ -6,11 +6,28 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:52:01 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 15:43:38 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/18 17:15:32 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+size_t	ft_cycle_lstsize(s_list *lst)
+{
+	s_list	*last;
+	size_t	i;
+
+	last = lst;
+	i = 1;
+	if (!lst)
+		return (0);
+	while (last->next != lst)
+	{
+		last = last->next;
+		i++;
+	}
+	return (i);
+}
 
 s_list	*ft_cycle_lstlast(s_list *lst)
 {
@@ -91,4 +108,3 @@ void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node)
 		*lst = new_node;
 	}
 }
-

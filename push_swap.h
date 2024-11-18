@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:27:54 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 20:33:57 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/18 17:42:24 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	**check_all_arg(int argc, char *argv[]);
 int		ck_over(char **aft_str);
 int		ck_dig(char **aft_str);
 int		ck_dup(char **aft_str);
+size_t	ft_cycle_lstsize(s_list *lst);
 s_list	*ft_cycle_lstlast(s_list *lst);
 void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node);
 s_list	*ft_cycle_lstnew(int c_num, size_t c_sort);
@@ -50,6 +51,8 @@ void	reverse_rotate_a(s_list **stack_a);
 void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node);
 void	delete_top_node(s_list **stack);
 void	delete_end_node(s_list **stack);
-void	sort_3(s_list **stack_a, s_list **stack_b);
+void	sort_2(s_list **stack_a);
+void	sort_3(s_list **stack_a);
+void	sort_4(s_list **stack_a, s_list **stack_b);
 
 #endif

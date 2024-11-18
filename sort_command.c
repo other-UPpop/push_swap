@@ -1,12 +1,11 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                                            */ /*                                                        :::      ::::::::   */
 /*   sort_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:30:30 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/16 19:52:11 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/18 17:10:08 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +19,7 @@ void	push_a(s_list **stack_a, s_list **stack_b)
 
 	if (!stack_a || !*stack_a)
 		return ;
+	printf("pa\n");
 	tmp_num = *(*stack_a)->num;
 	tmp_sort = *(*stack_a)->sort;
 	delete_top_node(stack_a);
@@ -43,6 +43,7 @@ void	push_b(s_list **stack_a, s_list **stack_b)
 	
 	if (!stack_b || !*stack_b)
 		return ;
+	printf("pb\n");
 	tmp_num = *(*stack_b)->num;
 	tmp_sort = *(*stack_b)->sort;
 	delete_top_node(stack_b);
@@ -63,13 +64,15 @@ void	swap_a(s_list **stack_a)
 	int		tmp_num;
 	size_t	tmp_sort;
 	size_t	i;
+	size_t	lst_size;
 	s_list	*node_1;
 	s_list	*node_2;
 
 	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
 		return ;
+	printf("sa\n");
+	lst_size = ft_cycle_lstsize(*stack_a);
 	i = 1;
-	printf("pb\n");
 	while (i <= 2)
 	{
 		tmp_num = *(*stack_a)->num;
@@ -81,6 +84,13 @@ void	swap_a(s_list **stack_a)
 			node_2 = ft_cycle_lstnew(tmp_num, tmp_sort);
 		i++;
 	}
+	if (lst_size == 2)
+	{
+		*stack_a = node_1;
+		node_1->next = node_1;
+		ft_cycle_lstadd_front(stack_a, node_2);
+		return ;
+	}
 	ft_cycle_lstadd_front(stack_a, node_1);
 	ft_cycle_lstadd_front(stack_a, node_2);
 }
@@ -90,11 +100,15 @@ void	swap_b(s_list **stack_b)
 	int		tmp_num;
 	size_t	tmp_sort;
 	size_t	i;
+	size_t	lst_size;
 	s_list	*node_1;
 	s_list	*node_2;
 
 	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
 		return ;
+	printf("sb\n");
+	i = 1;
+	lst_size = ft_cycle_lstsize(*stack_b);
 	i = 1;
 	while (i <= 2)
 	{
@@ -106,6 +120,13 @@ void	swap_b(s_list **stack_b)
 		else
 			node_2 = ft_cycle_lstnew(tmp_num, tmp_sort);
 		i++;
+	}
+	if (lst_size == 2)
+	{
+		*stack_b = node_1;
+		node_1->next = node_1;
+		ft_cycle_lstadd_front(stack_b, node_2);
+		return ;
 	}
 	ft_cycle_lstadd_front(stack_b, node_1);
 	ft_cycle_lstadd_front(stack_b, node_2);
@@ -129,6 +150,7 @@ void	rotate_a(s_list **stack_a)
 
 	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
 		return ;
+	printf("ra\n");
 	tmp_num = *(*stack_a)->num;
 	tmp_sort = *(*stack_a)->sort;
 	delete_top_node(stack_a);
@@ -144,6 +166,7 @@ void	rotate_b(s_list **stack_b)
 
 	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
 		return ;
+	printf("rb\n");
 	tmp_num = *(*stack_b)->num;
 	tmp_sort = *(*stack_b)->sort;
 	delete_top_node(stack_b);
@@ -170,6 +193,7 @@ void	reverse_rotate_a(s_list **stack_a)
 
 	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
 		return ;
+	printf("rra\n");
 	last_node = *stack_a;
 	last_node = ft_cycle_lstlast(*stack_a);
 	tmp_num = *last_node->num;
@@ -188,6 +212,7 @@ void	reverse_rotate_b(s_list **stack_b)
 
 	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
 		return ;
+	printf("rrb\n");
 	last_node = *stack_b;
 	last_node = ft_cycle_lstlast(*stack_b);
 	tmp_num = *last_node->num;
