@@ -6,19 +6,14 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:26:02 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/18 18:56:06 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/20 16:24:25 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_4(s_list **stack_a, s_list **stack_b)
+void	sort_4(t_list **stack_a, t_list **stack_b)
 {
-	size_t	i;
-	s_list	*node;
-
-	i = 0;
-	node = *stack_a;
 	if (*(*stack_a)->next->sort == 1)
 		swap_a(stack_a);
 	else

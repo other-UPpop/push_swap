@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_2.c                                           :+:      :+:    :+:   */
+/*   sort_6.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 16:43:55 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 15:25:45 by rohta            ###   ########.fr       */
+/*   Created: 2024/11/19 12:40:18 by rohta             #+#    #+#             */
+/*   Updated: 2024/11/20 16:27:33 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_2(t_list **stack_a)
+void	sort_6(t_list **stack_a, t_list **stack_b)
 {
-	if (*(*stack_a)->sort < *(*stack_a)->next->sort)
-		return ;
-	else
-		rotate_a(stack_a);
-}
+	size_t	i;
 
-void	reverse_sort_2(t_list **stack_b)
-{
-	if (*(*stack_b)->sort > *(*stack_b)->next->sort)
-		return ;
-	else
-		rotate_b(stack_b);
+	i = 0;
+	while (i < 3)
+	{
+		if (!(*(*stack_a)->sort < 4) && *(*stack_a)->next->sort < 4)
+			swap_a(stack_a);
+		else
+		{
+			while (*(*stack_a)->sort > 3)
+				reverse_rotate_a(stack_a);
+		}
+		push_a(stack_a, stack_b);
+		i++;
+	}
+	sort_3(stack_a);
+	reverse_sort_3(stack_b);
+	while (i--)
+		push_b(stack_a, stack_b);
+	return ;
 }

@@ -6,15 +6,15 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:52:01 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/18 17:15:32 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/20 15:29:10 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_cycle_lstsize(s_list *lst)
+size_t	ft_cycle_lstsize(t_list *lst)
 {
-	s_list	*last;
+	t_list	*last;
 	size_t	i;
 
 	last = lst;
@@ -29,9 +29,9 @@ size_t	ft_cycle_lstsize(s_list *lst)
 	return (i);
 }
 
-s_list	*ft_cycle_lstlast(s_list *lst)
+t_list	*ft_cycle_lstlast(t_list *lst)
 {
-	s_list	*last;
+	t_list	*last;
 
 	last = lst;
 	if (!lst)
@@ -41,9 +41,9 @@ s_list	*ft_cycle_lstlast(s_list *lst)
 	return (last);
 }
 
-void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
+void	ft_cycle_lstadd_back(t_list **lst, t_list *new_node)
 {
-	s_list	*last;
+	t_list	*last;
 
 	if (!lst || !new_node)
 		return ;
@@ -53,15 +53,17 @@ void	ft_cycle_lstadd_back(s_list **lst, s_list *new_node)
 	{
 		last = ft_cycle_lstlast(*lst);
 		last->next = new_node;
+		(*lst)->prev = new_node;
+		new_node->prev = last;
 		new_node->next = *lst;
 	}
 }
 
-s_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
+t_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
 {
-	s_list	*node;
+	t_list	*node;
 
-	node = (s_list *)malloc(sizeof(s_list));
+	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
 	node->num = (int *)malloc(sizeof(int));
@@ -71,40 +73,25 @@ s_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
 	*node->num = c_num;
 	*node->sort = c_sort;
 	node->next = node;
+	node->prev = node;
 	return (node);
 }
 
-//void	del_node(int *num, size_t *sort)
-//{
-//	free(num);
-//	free(sort);
-//}
-//
-//void	ft_cycle_lstdelone(s_list *lst, void (*del)(int *, size_t *))
-//{
-//	if (!lst || !del)
-//		return ;
-//	del(lst->num ,lst->sort);
-//	free(lst);
-//}
-//
-
-void	ft_cycle_lstadd_front(s_list **lst, s_list *new_node)
+void	ft_cycle_lstadd_front(t_list **lst, t_list *new_node)
 {
-	s_list	*last;
+	t_list	*last;
 
 	if (!lst || !new_node)
 		return ;
 	if (!*lst)
-	{
 		*lst = new_node;
-		new_node->next = new_node;
-	}
 	else
 	{
 		last = ft_cycle_lstlast(*lst);
 		new_node->next = *lst;
+		new_node->prev = last;
 		last->next = new_node;
+		(*lst)->prev = new_node;
 		*lst = new_node;
 	}
 }

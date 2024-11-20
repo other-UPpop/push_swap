@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   check_all_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
+/*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:36:23 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/15 17:13:26 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/20 16:09:40 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//#include "libft/libft.h"
 
 static char	*set_arg(int argc, char *argv[])
 {
-	size_t	i;
+	int		i;
 	size_t	tmp;
 	size_t	len;
 	char	*sp_str;
@@ -43,7 +42,7 @@ static char	*set_arg(int argc, char *argv[])
 
 static char	*get_arg(int argc, char *argv[], char *sp_str)
 {
-	size_t	i;
+	int		i;
 	size_t	len;
 	size_t	tmp;
 	char	*str;
@@ -109,12 +108,10 @@ static char	**get_arg_check(int argc, char *argv[])
 
 char	**check_all_arg(int argc, char *argv[])
 {
-	int		i;
 	char	**str;
 
-	i = 0;
 	str = get_arg_check(argc, argv);
 	if (!str)
-		return (0);
+		return (NULL);
 	return (str);
 }

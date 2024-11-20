@@ -1,29 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_2.c                                           :+:      :+:    :+:   */
+/*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 16:43:55 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 15:25:45 by rohta            ###   ########.fr       */
+/*   Created: 2024/11/20 15:03:35 by rohta             #+#    #+#             */
+/*   Updated: 2024/11/20 15:31:14 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_2(t_list **stack_a)
+void	free_str_mem(char **str)
 {
-	if (*(*stack_a)->sort < *(*stack_a)->next->sort)
-		return ;
-	else
-		rotate_a(stack_a);
+	size_t	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			free(str[i]);
+			i++;
+		}
+		free(str);
+	}
 }
 
-void	reverse_sort_2(t_list **stack_b)
+void	free_cycle_list(t_list *lst)
 {
-	if (*(*stack_b)->sort > *(*stack_b)->next->sort)
+	t_list	*start;
+	t_list	*temp;
+
+	if (!lst)
 		return ;
-	else
-		rotate_b(stack_b);
+	start = lst;
+	temp = lst;
+	lst = lst->next;
+	free(temp);
+	while (lst != start)
+	{
+		temp = lst;
+		lst = lst->next;
+		free(temp);
+	}
 }
