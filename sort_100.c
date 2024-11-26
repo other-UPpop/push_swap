@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:20:30 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 16:22:55 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/26 19:07:51 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ static void	comp_sort(t_list **stack_a, t_list **stack_b, size_t found,
 	}
 }
 
-static void	cycle_sort(t_list **stack_a, t_list **stack_b, size_t i)
+static void	cycle_sort(t_list **stack_a, t_list **stack_b)
 {
 	if (stack_b && *stack_b && ft_cycle_lstsize(*stack_b) >= 2
-		&& *(*stack_b)->sort / 2 == 0)
+		&& *(*stack_b)->sort % 2 == 0)
 		rotate_rotate(stack_a, stack_b);
-	else if (ft_cycle_lstsize(*stack_a) / 2 < i)
-		reverse_rotate_a(stack_a);
 	else
 		rotate_a(stack_a);
 }
@@ -75,27 +73,16 @@ static size_t	sort_push_a(t_list **stack_a, t_list **stack_b, size_t large,
 
 void	sort_100(t_list **stack_a, t_list **stack_b, size_t ac)
 {
-	size_t	i;
-	size_t	j;
 	size_t	large;
 
 	large = 10;
-	i = 0;
-	j = 0;
 	while (ft_cycle_lstsize(*stack_a) != 3)
 	{
 		large = sort_push_a(stack_a, stack_b, large, ac);
 		if (ft_cycle_lstsize(*stack_a) != 3)
 		{
-			j = prev_node(*stack_a, ac - 3, large);
-			i = next_node(*stack_a, ac - 3, large);
 			while (*(*stack_a)->sort > large || *(*stack_a)->sort > ac - 3)
-			{
-				if (i < j)
-					cycle_sort(stack_a, stack_b, i);
-				else
-					reverse_rotate_a(stack_a);
-			}
+				cycle_sort(stack_a, stack_b);
 		}
 	}
 	sort_3(stack_a);

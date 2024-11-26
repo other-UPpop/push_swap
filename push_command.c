@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:32:19 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 16:17:20 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/26 18:07:41 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 
 	if (!stack_a || !*stack_a)
 		return ;
-	ft_printf("pa\n");
+	ft_printf("pb\n");
 	tmp_num = *(*stack_a)->num;
 	tmp_sort = *(*stack_a)->sort;
 	delete_top_node(stack_a);
@@ -51,7 +51,7 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 
 	if (!stack_b || !*stack_b)
 		return ;
-	ft_printf("pb\n");
+	ft_printf("pa\n");
 	tmp_num = *(*stack_b)->num;
 	tmp_sort = *(*stack_b)->sort;
 	delete_top_node(stack_b);
