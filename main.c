@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:32:56 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/27 16:54:53 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/27 18:09:44 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ int	main(int argc, char *argv[])
 	sort_select(stack_a, stack_b, (size_t)argc);
 	free_str_mem(str);
 	free_cycle_list(stack_a);
+	free_cycle_list(stack_b);
 	return (0);
 }

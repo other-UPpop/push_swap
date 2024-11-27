@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:03:35 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 15:31:14 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/27 18:18:59 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ void	free_cycle_list(t_list *lst)
 	if (!lst)
 		return ;
 	start = lst;
-	temp = lst;
-	lst = lst->next;
-	free(temp);
 	while (lst != start)
 	{
-		temp = lst;
-		lst = lst->next;
+		temp = lst->next;
+		if (temp->num)
+			free(temp->num);
+		if (temp->sort)
+			free(temp->sort);
+		lst->next = temp->next;
 		free(temp);
 	}
+	free(lst);
 }
