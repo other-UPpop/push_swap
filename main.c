@@ -6,11 +6,29 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:32:56 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 22:02:09 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/27 16:54:53 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_cycle_listb(t_list *lst)
+{
+	t_list	*first;
+	t_list	*tmp;
+
+	if (!lst)
+		return ;
+	first = lst;
+	printf("out_num:%d\n", *lst->num);
+	lst = lst->next;
+	while (lst != first)
+	{
+		tmp = lst;
+		printf("out_num:%d\n", *tmp->num);
+		lst = lst->next;
+	}
+}
 
 static size_t	ft_compare(char **str, size_t i)
 {
@@ -87,6 +105,7 @@ int	main(int argc, char *argv[])
 	if (!str)
 		return (0);
 	stack_a = put_first_stack(str);
+	print_cycle_listb(stack_a);
 	sort_select(stack_a, stack_b, (size_t)argc);
 	free_str_mem(str);
 	free_cycle_list(stack_a);

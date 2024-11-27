@@ -6,18 +6,18 @@
 /*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:36:23 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 16:09:40 by rohta            ###   ########.fr       */
+/*   Updated: 2024/11/27 17:47:55 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	*set_arg(int argc, char *argv[])
+static void	*set_arg(int argc, char *argv[])
 {
 	int		i;
 	size_t	tmp;
 	size_t	len;
-	char	*sp_str;
+	void	*sp_str;
 
 	i = 1;
 	tmp = 0;
@@ -30,11 +30,11 @@ static char	*set_arg(int argc, char *argv[])
 			return (0);
 		}
 		tmp = ft_strlen(argv[i]);
-		len += tmp + 2;
+		len += tmp + 1;
 		i++;
 	}
 	sp_str = NULL;
-	sp_str = (char *)malloc(len + 1);
+	sp_str = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!sp_str)
 		return (NULL);
 	return (sp_str);
@@ -48,19 +48,17 @@ static char	*get_arg(int argc, char *argv[], char *sp_str)
 	char	*str;
 
 	i = 1;
-	tmp = 0;
+	tmp = 1;
 	str = NULL;
 	while (i < argc)
 	{
 		len = ft_strlen(argv[i]);
-		str = (char *)malloc(len + 1);
-		if (!str)
-			return (NULL);
-		ft_strlcpy(str, " ", 2);
-		ft_strlcat(str, argv[i], len + 2);
-		ft_strlcat(str, " ", len + 2);
-		tmp += len + 2;
-		ft_strlcat(sp_str, str, (tmp + len));
+		str = (char *)ft_calloc(len + 5, sizeof(char));
+		ft_strlcpy(str, " ", len + 2);
+		ft_strlcat(str, argv[i], len + 3);
+		ft_strlcat(str, " ", len + 5);
+		tmp += len + 1;
+		ft_strlcat(sp_str, str, tmp);
 		i++;
 		free(str);
 	}
