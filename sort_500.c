@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:23:36 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/26 19:05:33 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:42:49 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ static void	comp_sort(t_list **stack_a, t_list **stack_b, size_t found,
 
 static void	cycle_sort(t_list **stack_a, t_list **stack_b)
 {
-	if (stack_b && *stack_b && ft_cycle_lstsize(*stack_b) >= 2
+	size_t	i;
+
+	i = ft_cycle_lstsize(*stack_b);
+	if (stack_b && *stack_b && i >= 2
 		&& *(*stack_b)->sort % 2 == 0)
 		rotate_rotate(stack_a, stack_b);
 	else

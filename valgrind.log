@@ -1,70 +1,25 @@
-==14902== Memcheck, a memory error detector
-==14902== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==14902== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==14902== Command: ./push_swap 3 2 1 4 5 6 7 8 9 10
-==14902== 
-pb
-pb
-pb
-pb
-pb
-pb
-pb
-pa
-pa
-pa
-pa
-pa
-rb
-pa
-pa
-==14902== Invalid free() / delete / delete[] / realloc()
-==14902==    at 0x484988F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==14902==    by 0x109FC2: free_cycle_list (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x1095A1: main (in /home/ohtar/code/push_swap/push_swap)
-==14902==  Address 0x4a80780 is 0 bytes inside a block of size 32 free'd
-==14902==    at 0x484988F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==14902==    by 0x109C1B: ft_cycle_lstdelone (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x109D02: delete_top_node (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x10A2E4: push_a (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x10AE28: sort_push_a (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x10AE7B: sort_100 (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x1094E2: sort_select (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x109589: main (in /home/ohtar/code/push_swap/push_swap)
-==14902==  Block was alloc'd at
-==14902==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==14902==    by 0x10A0FE: ft_cycle_lstnew (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x1093B0: put_first_stack (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x109560: main (in /home/ohtar/code/push_swap/push_swap)
-==14902== 
-out_num:3
-out_num:2
-out_num:1
-out_num:4
-out_num:5
-out_num:6
-out_num:7
-out_num:8
-out_num:9
-out_num:10
-rrb
-==14902== 
-==14902== HEAP SUMMARY:
-==14902==     in use at exit: 440 bytes in 30 blocks
-==14902==   total heap usage: 101 allocs, 72 frees, 5,432 bytes allocated
-==14902== 
-==14902== 440 (32 direct, 408 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 7
-==14902==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==14902==    by 0x10A0FE: ft_cycle_lstnew (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x1093B0: put_first_stack (in /home/ohtar/code/push_swap/push_swap)
-==14902==    by 0x109560: main (in /home/ohtar/code/push_swap/push_swap)
-==14902== 
-==14902== LEAK SUMMARY:
-==14902==    definitely lost: 32 bytes in 1 blocks
-==14902==    indirectly lost: 408 bytes in 29 blocks
-==14902==      possibly lost: 0 bytes in 0 blocks
-==14902==    still reachable: 0 bytes in 0 blocks
-==14902==         suppressed: 0 bytes in 0 blocks
-==14902== 
-==14902== For lists of detected and suppressed errors, rerun with: -s
-==14902== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==17922== Memcheck, a memory error detector
+==17922== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==17922== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==17922== Command: ./push_swap 1 2
+==17922== 
+==17922== 
+==17922== HEAP SUMMARY:
+==17922==     in use at exit: 88 bytes in 6 blocks
+==17922==   total heap usage: 12 allocs, 6 frees, 133 bytes allocated
+==17922== 
+==17922== 88 (32 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 4 of 4
+==17922==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==17922==    by 0x10A0A8: ft_cycle_lstnew (in /home/ohtar/code/push_swap/push_swap)
+==17922==    by 0x1093B0: put_first_stack (in /home/ohtar/code/push_swap/push_swap)
+==17922==    by 0x109560: main (in /home/ohtar/code/push_swap/push_swap)
+==17922== 
+==17922== LEAK SUMMARY:
+==17922==    definitely lost: 32 bytes in 1 blocks
+==17922==    indirectly lost: 56 bytes in 5 blocks
+==17922==      possibly lost: 0 bytes in 0 blocks
+==17922==    still reachable: 0 bytes in 0 blocks
+==17922==         suppressed: 0 bytes in 0 blocks
+==17922== 
+==17922== For lists of detected and suppressed errors, rerun with: -s
+==17922== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:03:35 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/27 18:18:59 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/14 22:42:48 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,17 @@ void	free_str_mem(char **str)
 
 void	free_cycle_list(t_list *lst)
 {
-	t_list	*start;
 	t_list	*temp;
+	t_list	*start;
 
 	if (!lst)
 		return ;
 	start = lst;
-	while (lst != start)
+	while (lst->next != start)
 	{
 		temp = lst->next;
-		if (temp->num)
-			free(temp->num);
-		if (temp->sort)
-			free(temp->sort);
-		lst->next = temp->next;
-		free(temp);
+		ft_cycle_lstdelone(lst, del_node);
+		lst = temp;
 	}
-	free(lst);
+	ft_cycle_lstdelone(lst, del_node);
 }
