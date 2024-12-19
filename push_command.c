@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:32:19 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/26 18:07:41 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 16:46:03 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	first_push(t_list **stack, t_list *node)
 	return ;
 }
 
-void	push_a(t_list **stack_a, t_list **stack_b)
+void	push_b(t_list **stack_a, t_list **stack_b)
 {
 	int		tmp_num;
 	size_t	tmp_sort;
@@ -43,7 +43,7 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 	ft_cycle_lstadd_front(stack_b, node_b);
 }
 
-void	push_b(t_list **stack_a, t_list **stack_b)
+void	push_a(t_list **stack_a, t_list **stack_b)
 {
 	int		tmp_num;
 	size_t	tmp_sort;

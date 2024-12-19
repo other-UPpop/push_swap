@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:52:01 by rohta             #+#    #+#             */
-/*   Updated: 2024/12/14 22:27:43 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:13:49 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,34 +65,34 @@ void	ft_cycle_lstadd_back(t_list **lst, t_list *new_node)
 	}
 }
 
-t_list *ft_cycle_lstnew(int num, size_t sort)
+t_list	*ft_cycle_lstnew(int num, size_t sort)
 {
-    t_list *node;
+	t_list	*node;
 
-    node = malloc(sizeof(t_list));
-    if (!node)
-        return (NULL);
-    node->num = malloc(sizeof(int));
-    if (!node->num)
-    {
-        free(node);
-        return (NULL);
-    }
-    node->sort = malloc(sizeof(size_t));
-    if (!node->sort)
-    {
-        free(node->num);
-        free(node);
-        return (NULL);
-    }
-    *(node->num) = num;
-    *(node->sort) = sort;
-    node->next = node;
-    node->prev = node;
-    return (node);
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->num = malloc(sizeof(int));
+	if (!node->num)
+	{
+		free(node);
+		return (NULL);
+	}
+	node->sort = malloc(sizeof(size_t));
+	if (!node->sort)
+	{
+		free(node->num);
+		free(node);
+		return (NULL);
+	}
+	*(node->num) = num;
+	*(node->sort) = sort;
+	node->next = node;
+	node->prev = node;
+	return (node);
 }
 
-//t_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
+// t_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
 //{
 //	t_list	*node;
 //

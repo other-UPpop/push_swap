@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:37:41 by rohta             #+#    #+#             */
-/*   Updated: 2024/12/14 21:48:18 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:12:37 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	two_node(t_list **stack, t_list **node_1, t_list **node_2)
 	return ;
 }
 
-static size_t	tmp_node(t_list **stack, t_list **node_1, t_list **node_2, size_t i)
+static size_t	tmp_node(t_list **stack, t_list **node_1, t_list **node_2,
+		size_t i)
 {
 	int		tmp_num;
 	size_t	tmp_sort;
@@ -34,7 +35,6 @@ static size_t	tmp_node(t_list **stack, t_list **node_1, t_list **node_2, size_t 
 	else
 		*node_2 = ft_cycle_lstnew(tmp_num, tmp_sort);
 	i++;
-
 	return (i);
 }
 

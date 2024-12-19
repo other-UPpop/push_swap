@@ -6,12 +6,11 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:43:00 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 16:10:56 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:11:01 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//#include "libft/libft.h"
 
 int	ck_over(char **aft_str)
 {
@@ -24,7 +23,8 @@ int	ck_over(char **aft_str)
 		num = ft_long_atoi(aft_str[i]);
 		if (num > INT_MAX || num < INT_MIN)
 		{
-			printf("sign_Error");
+			ft_printf("Error\n");
+			free_str_mem(aft_str);
 			return (1);
 		}
 		i++;
@@ -48,7 +48,8 @@ int	ck_dig(char **aft_str)
 		{
 			if (!ft_isdigit(aft_str[i][j]))
 			{
-				printf("dig_Error");
+				ft_printf("Error\n");
+				free_str_mem(aft_str);
 				return (1);
 			}
 			j++;
@@ -72,7 +73,8 @@ int	ck_dup(char **aft_str)
 		{
 			if (ft_atoi(aft_str[i]) == ft_atoi(aft_str[j]))
 			{
-				printf("Error");
+				ft_printf("Error\n");
+				free_str_mem(aft_str);
 				return (1);
 			}
 			j++;

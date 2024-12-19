@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:23:36 by rohta             #+#    #+#             */
-/*   Updated: 2024/12/13 16:42:49 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:13:17 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static void	comp_sort(t_list **stack_a, t_list **stack_b, size_t found,
 		size_t ac)
 {
 	t_list	*node;
-	
+
 	node = *stack_b;
 	while (ft_cycle_lstsize(*stack_a) != ac || found != 0)
 	{
 		if (*(*stack_b)->sort == found)
 		{
-			push_b(stack_a, stack_b);
+			push_a(stack_a, stack_b);
 			found--;
 		}
 		else
@@ -55,8 +55,7 @@ static void	cycle_sort(t_list **stack_a, t_list **stack_b)
 	size_t	i;
 
 	i = ft_cycle_lstsize(*stack_b);
-	if (stack_b && *stack_b && i >= 2
-		&& *(*stack_b)->sort % 2 == 0)
+	if (stack_b && *stack_b && i >= 2 && *(*stack_b)->sort % 2 == 0)
 		rotate_rotate(stack_a, stack_b);
 	else
 		rotate_a(stack_a);
@@ -67,7 +66,7 @@ static size_t	sort_push_a(t_list **stack_a, t_list **stack_b, size_t large,
 {
 	if ((*(*stack_a)->sort <= large) && !(*(*stack_a)->sort > ac - 2))
 	{
-		push_a(stack_a, stack_b);
+		push_b(stack_a, stack_b);
 		if (large <= ac - 3)
 			large++;
 	}
@@ -84,10 +83,10 @@ void	sort_500(t_list **stack_a, t_list **stack_b, size_t ac)
 		large = sort_push_a(stack_a, stack_b, large, ac);
 		if (ft_cycle_lstsize(*stack_a) != 3)
 		{
-			while (*(*stack_a)->sort > large || *(*stack_a)->sort > ac-3)
+			while (*(*stack_a)->sort > large || *(*stack_a)->sort > ac - 3)
 				cycle_sort(stack_a, stack_b);
 		}
 	}
 	sort_3(stack_a);
-	comp_sort(stack_a, stack_b, ac-3, ac);
+	comp_sort(stack_a, stack_b, ac - 3, ac);
 }

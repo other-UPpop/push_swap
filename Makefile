@@ -6,15 +6,15 @@
 #    By: rohta <rohta@student.42.jp>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/20 15:47:33 by rohta             #+#    #+#              #
-#    Updated: 2024/12/13 23:47:42 by rohta            ###   ########.fr        #
+#    Updated: 2024/12/19 16:38:10 by rohta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
-#CFLAGS = -Wall -Wextra -Werror
+#CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 SRC = main.c check_all_arg.c check_over_dig_dup.c delete_node.c\
       found_near_node.c free_mem.c list.c push_command.c reverse_rotate_command.c\
       reverse_sort_3.c rotate_command.c sort_100.c sort_2.c sort_3.c\

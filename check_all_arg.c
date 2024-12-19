@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:36:23 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/27 17:47:55 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:11:43 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	*set_arg(int argc, char *argv[])
 	{
 		if (ft_strlen(argv[i]) == 0)
 		{
-			printf("Error");
+			ft_printf("Error\n");
 			return (0);
 		}
 		tmp = ft_strlen(argv[i]);

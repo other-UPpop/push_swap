@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:20:30 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/26 19:07:51 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:43:38 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	else_var(t_list **stack_b, t_list *node, size_t found)
 	size_t	i;
 
 	node = *stack_b;
-	i = 0;
+	i = 1;
 	while (*node->sort != found)
 	{
 		node = node->next;
@@ -42,7 +42,7 @@ static void	comp_sort(t_list **stack_a, t_list **stack_b, size_t found,
 	{
 		if (*(*stack_b)->sort == found)
 		{
-			push_b(stack_a, stack_b);
+			push_a(stack_a, stack_b);
 			found--;
 		}
 		else
@@ -52,8 +52,10 @@ static void	comp_sort(t_list **stack_a, t_list **stack_b, size_t found,
 
 static void	cycle_sort(t_list **stack_a, t_list **stack_b)
 {
-	if (stack_b && *stack_b && ft_cycle_lstsize(*stack_b) >= 2
-		&& *(*stack_b)->sort % 2 == 0)
+	size_t	i;
+
+	i = ft_cycle_lstsize(*stack_b);
+	if (stack_b && *stack_b && i >= 2 && *(*stack_b)->sort % 2 == 0)
 		rotate_rotate(stack_a, stack_b);
 	else
 		rotate_a(stack_a);
@@ -62,10 +64,10 @@ static void	cycle_sort(t_list **stack_a, t_list **stack_b)
 static size_t	sort_push_a(t_list **stack_a, t_list **stack_b, size_t large,
 		size_t ac)
 {
-	if ((*(*stack_a)->sort <= large) && !(*(*stack_a)->sort > ac - 3))
+	if ((*(*stack_a)->sort <= large) && !(*(*stack_a)->sort > ac - 2))
 	{
-		push_a(stack_a, stack_b);
-		if (large < ac - 3)
+		push_b(stack_a, stack_b);
+		if (large <= ac - 3)
 			large++;
 	}
 	return (large);

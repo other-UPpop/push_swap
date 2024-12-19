@@ -6,7 +6,7 @@
 /*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 12:40:18 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 16:27:33 by rohta            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:12:11 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	sort_6(t_list **stack_a, t_list **stack_b)
 			while (*(*stack_a)->sort > 3)
 				reverse_rotate_a(stack_a);
 		}
-		push_a(stack_a, stack_b);
+		push_b(stack_a, stack_b);
 		i++;
 	}
 	sort_3(stack_a);
 	reverse_sort_3(stack_b);
 	while (i--)
-		push_b(stack_a, stack_b);
+		push_a(stack_a, stack_b);
 	return ;
 }
