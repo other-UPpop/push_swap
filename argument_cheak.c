@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   argument_cheak.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
+/*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:48:37 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/27 16:53:17 by rohta            ###   ########.fr       */
+/*   Updated: 2025/04/08 15:53:43 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_cycle_listb(s_list *lst)
+void	print_cycle_listb(t_list *lst)
 {
-	s_list	*first;
-	s_list	*tmp;
+	t_list	*first;
+	t_list	*tmp;
 
 	if (!lst)
 		return ;
@@ -30,10 +30,10 @@ void	print_cycle_listb(s_list *lst)
 	}
 }
 
-void	print_cycle_lista(s_list *lst)
+void	print_cycle_lista(t_list *lst)
 {
-	s_list	*first;
-	s_list	*tmp;
+	t_list	*first;
+	t_list	*tmp;
 
 	if (!lst)
 		return ;
