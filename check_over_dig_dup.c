@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_over_dig_dup.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
+/*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:43:00 by rohta             #+#    #+#             */
-/*   Updated: 2024/12/19 17:11:01 by rohta            ###   ########.fr       */
+/*   Updated: 2025/04/08 22:29:40 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,27 @@ int	ck_dup(char **aft_str)
 			j++;
 		}
 		i++;
+	}
+	return (0);
+}
+
+int	check_sort(t_list *lst)
+{
+	t_list	*first;
+	t_list	*tmp;
+
+	if (!lst)
+		return (0);
+	first = lst;
+	if (*(lst->num) > *(lst->next->num))
+		return (1);
+	lst = lst->next;
+	while (lst->next != first)
+	{
+		tmp = lst;
+		if (*(tmp->num) > *(tmp->next->num))
+			return (1);
+		lst = lst->next;
 	}
 	return (0);
 }

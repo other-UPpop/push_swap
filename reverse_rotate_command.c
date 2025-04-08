@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_command.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
+/*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:56:29 by rohta             #+#    #+#             */
-/*   Updated: 2024/11/20 16:18:23 by rohta            ###   ########.fr       */
+/*   Updated: 2025/04/08 21:16:46 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reverse_rotate_a(t_list **stack_a)
 
 	if (!stack_a || !*stack_a || (*stack_a)->next == *stack_a)
 		return ;
-	printf("rra\n");
+	ft_printf("rra\n");
 	last_node = *stack_a;
 	last_node = ft_cycle_lstlast(*stack_a);
 	tmp_num = *last_node->num;
@@ -40,7 +40,7 @@ void	reverse_rotate_b(t_list **stack_b)
 
 	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
 		return ;
-	printf("rrb\n");
+	ft_printf("rrb\n");
 	last_node = *stack_b;
 	last_node = ft_cycle_lstlast(*stack_b);
 	tmp_num = *last_node->num;
@@ -92,7 +92,7 @@ void	reverse_rotate_rotate(t_list **stack_a, t_list **stack_b)
 		return ;
 	if (!stack_b || !*stack_b || (*stack_b)->next == *stack_b)
 		return ;
-	printf("rrr\n");
+	ft_printf("rrr\n");
 	reverse_rotate_rotate_a(stack_a);
 	reverse_rotate_rotate_b(stack_b);
 }

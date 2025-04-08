@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
+/*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:32:56 by rohta             #+#    #+#             */
-/*   Updated: 2024/12/19 17:52:54 by rohta            ###   ########.fr       */
+/*   Updated: 2025/04/08 22:00:07 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,11 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	stack_a = put_first_stack(str);
-	ac = ft_cycle_lstsize(stack_a);
-	sort_select(&stack_a, &stack_b, ac);
+	if (check_sort(stack_a) == 1)
+	{
+		ac = ft_cycle_lstsize(stack_a);
+		sort_select(&stack_a, &stack_b, ac);
+	}
 	free_str_mem(str);
 	free_cycle_list(stack_a);
 	return (0);

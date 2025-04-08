@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
+/*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:52:01 by rohta             #+#    #+#             */
-/*   Updated: 2024/12/19 17:13:49 by rohta            ###   ########.fr       */
+/*   Updated: 2025/04/08 21:30:24 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,27 +91,6 @@ t_list	*ft_cycle_lstnew(int num, size_t sort)
 	node->prev = node;
 	return (node);
 }
-
-// t_list	*ft_cycle_lstnew(int c_num, size_t c_sort)
-//{
-//	t_list	*node;
-//
-//	node = (t_list *)malloc(sizeof(t_list));
-//	if (!node)
-//		return (NULL);
-//	node->num = (int *)malloc(sizeof(int));
-//	node->sort = (size_t *)malloc(sizeof(size_t));
-//	if (!node->num || !node->sort)
-//	{
-//		solo_node_del(node);
-//		return (NULL);
-//	}
-//	*node->num = c_num;
-//	*node->sort = c_sort;
-//	node->next = node;
-//	node->prev = node;
-//	return (node);
-//}
 
 void	ft_cycle_lstadd_front(t_list **lst, t_list *new_node)
 {

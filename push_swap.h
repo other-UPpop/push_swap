@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rohta <rohta@student.42.jp>                +#+  +:+       +#+        */
+/*   By: rohta <rohta@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:27:54 by rohta             #+#    #+#             */
-/*   Updated: 2024/12/19 17:56:05 by rohta            ###   ########.fr       */
+/*   Updated: 2025/04/08 22:07:32 by rohta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct p_list
 int					ck_over(char **aft_str);
 int					ck_dig(char **aft_str);
 int					ck_dup(char **aft_str);
+int					check_sort(t_list *lst);
 
 char				**check_all_arg(int argc, char *argv[]);
 
